@@ -52,14 +52,15 @@ app.get('/weather', (req, res) => {
         if (error) {
             return res.send({ error })
         } else {
-            forecast(latitude, longtitude, (error, {weather_descriptions, temperature, precip} = {}) => {
+            forecast(latitude, longtitude, (error, {weather_descriptions, temperature, precip, observation_time} = {}) => {
                 if (error) {
                     return res.send({ error })
                 } else {
+                    console.log('time: ', observation_time)
                     res.send({
                         address: req.query.address,
                         location: location,
-                        forecast: `${weather_descriptions[0]}: It's currently ${temperature} degrees out. There is ${precip * 100}% chance of rain`,
+                        forecast: `${weather_descriptions[0]} at ${observation_time}: It's currently ${temperature} degrees out. There is ${precip * 100}% chance of rain`,
                     })
                 }
             })
