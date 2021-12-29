@@ -95,9 +95,9 @@ app.get('*', (req, res) => {
 })
 
 // start a server and listen at a specific port
-const port = 3000;
+const port = process.env.PORT || 3000
 app.listen(port, () => {
-    console.log(`Server is up on http://localhost:${port}`)
+    console.log(`Server is up on ${port}`)
 })
 
 
